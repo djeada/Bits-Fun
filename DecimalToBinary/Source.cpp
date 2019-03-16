@@ -9,6 +9,7 @@ bool ifZero(int *n);
 int countBit(int n);
 int swapData(int n);
 void swapXOR(int *a, int *b);
+int trailingZeros(int n);
 
 int main() {
 
@@ -28,6 +29,7 @@ int main() {
 		cout << arr[i];
 	}
 	cout << endl;
+	cout << endl;
 
 	arr = whichBits(num);
 
@@ -36,13 +38,15 @@ int main() {
 
 	cout << endl;
 
+	cout << "Number of trailing zeros in " << num << " is " << trailingZeros(num) << endl << endl;
+
 	arr = revBits(getBinary(num));
 
 	cout << "Number " << num << " with 0's and 1's reversed " << endl;
 	for (int i = 0; i < 8; i++) {
 		cout << arr[i];
 	}
-	cout << endl;
+	cout << endl << endl;
 	
 	int data = 0x13145;
 	cout << "Data before swapping " << data << endl;
@@ -140,10 +144,6 @@ int* revBits(int *n){
 				arr[i] = 1;
 			}
 		}
-
-		for (int i = 0; i < 8; i++) {
-			cout << arr[i];
-		}
 	}
 
 	return arr;
@@ -154,9 +154,20 @@ int swapData(int n) {
 	return data;
 }
 
-void swap(int *a,int *b)
-{
-    *a  =   *a ^ *b;
-    *b  =   *a ^ *b;
-    *a  =   *a ^ *b;
+int trailingZeros(int n) {
+	int count = 0;
+	while (n != 0) {
+		if (n & 1 == 1) //if current bit is 1
+			break; //no more trailing zero
+		n = n >> 1; //right shift
+		count++; //if trailing zero, increase count
+	}
+	return count;
+}
+
+
+void swapXOR(int *a, int *b){
+	*a = *a ^ *b;
+	*b = *a ^ *b;
+	*a = *a ^ *b;
 }
