@@ -135,6 +135,7 @@ int* revBits(int *n){
 		for (int i = 0; i < 8; i++) {
 			if (n[i] == 1) {
 				elem = i;
+				//after finding the first one break
 				break;
 			}
 		}
@@ -157,10 +158,11 @@ int swapData(int n) {
 int trailingZeros(int n) {
 	int count = 0;
 	while (n != 0) {
-		if (n & 1 == 1) //if current bit is 1
-			break; //no more trailing zero
-		n = n >> 1; //right shift
-		count++; //if trailing zero, increase count
+		//increase the count until you found the first 1
+		if (n & 1 == 1) 
+			break; 
+		n = n >> 1;
+		count++; 
 	}
 	return count;
 }
