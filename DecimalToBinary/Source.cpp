@@ -10,6 +10,8 @@ int countBit(int n);
 int swapData(int n);
 void swapXOR(int *a, int *b);
 int trailingZeros(int n);
+int highestBit(int n);
+bool parityCheck(int n);
 
 int main() {
 
@@ -38,7 +40,15 @@ int main() {
 
 	cout << endl;
 
-	cout << "Number of trailing zeros in " << num << " is " << trailingZeros(num) << endl << endl;
+	cout << "Number of trailing zeros in " << num << " is " << trailingZeros(num) << endl;
+	cout << "Highest bit in " << num << " is " << highestBit(num) <<  endl;
+
+	if (parityCheck(num)) {
+		cout << "Number " << num << " is even " << endl;
+	}
+	else {
+		cout << "Number " << num << " is odd " << endl;
+	}
 
 	arr = revBits(getBinary(num));
 
@@ -167,9 +177,25 @@ int trailingZeros(int n) {
 	return count;
 }
 
+int highestBit(int n) {
+	int count = 0;
+	while (n != 0) {
+		n = n >> 1;
+		count++; 
+	}
+	return count;
+}
 
 void swapXOR(int *a, int *b){
 	*a = *a ^ *b;
 	*b = *a ^ *b;
 	*a = *a ^ *b;
+}
+
+bool parityCheck(int n) {
+	bool key = false;
+	if (n & 1 == 0) {
+		key = true;
+	}
+	return key;
 }
