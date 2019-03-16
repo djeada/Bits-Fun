@@ -7,6 +7,8 @@ int* whichBits(int n);
 int* revBits(int *n);
 bool ifZero(int *n);
 int countBit(int n);
+int swapData(int n);
+void swapXOR(int *a, int *b);
 
 int main() {
 
@@ -42,6 +44,10 @@ int main() {
 	}
 	cout << endl;
 	
+	int data = 0x13145;
+	cout << "Data before swapping " << data << endl;
+	cout << "Data after swapping " << swapData(data) << endl;
+
 	system("Pause");
 
 	return 0;
@@ -143,3 +149,9 @@ int* revBits(int *n){
 	return arr;
 }
 
+int swapData(int n) {
+	int data = ((n << 8) & 0xff00) | ((n >> 8) & 0x00ff);
+	return data;
+}
+
+void swap ()
